@@ -2,11 +2,18 @@ import requests, json
 from checker import ProxyChecker
 import threading
 
-###### ARGS ######
+######################
+######## ARGS ########
+######################
+
 country = "US" #COUNTRY PROXY
 limit = "100" #LIMIT PROXY LIST
 checker = ProxyChecker(save_to_file="path/to/file.txt") #Optional output file full path, remove args if unwanted.
 # checker = ProxyChecker() #In case of non-output file.
+
+######################
+###### END ARGS ######
+######################
 
 link = "https://proxylist.geonode.com/api/proxy-list?limit="+limit+"&page=1&sort_by=lastChecked&sort_type=desc&country="+country
 data = requests.get(link).text
