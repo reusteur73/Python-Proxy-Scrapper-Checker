@@ -1,5 +1,5 @@
 import requests, json
-from proxy_checking import ProxyChecker
+from checker import ProxyChecker
 import threading
 
 country = "US" #COUNTRY PROXY
