@@ -2,8 +2,12 @@ import requests, json
 from checker import ProxyChecker
 import threading
 
+###### ARGS ######
 country = "US" #COUNTRY PROXY
 limit = "100" #LIMIT PROXY LIST
+checker = ProxyChecker(save_to_file="path/to/file.txt") #Optional output file full path, remove args if unwanted.
+# checker = ProxyChecker() #In case of non-output file.
+
 link = "https://proxylist.geonode.com/api/proxy-list?limit="+limit+"&page=1&sort_by=lastChecked&sort_type=desc&country="+country
 data = requests.get(link).text
 fix = json.loads(data)
@@ -31,13 +35,11 @@ class ProxyCheckerThread(threading.Thread):
     
     def run(self):
         r = self.checker.check_proxy(self.proxy)
-        print(r)
-
-checker = ProxyChecker()
+        if r is not None:
+            print(r)
 
 threads = []
 for proxy in output:
-    print(f"Checking : {proxy}")
     t = ProxyCheckerThread(proxy, checker)
     t.start()
     threads.append(t)
