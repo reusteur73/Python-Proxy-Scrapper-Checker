@@ -2,7 +2,7 @@
 Python3 script that scrappe proxy, and check if they work.
 
 # Usage
-In the `######## ARGS ########` fields :<br><br>
+In the `######## ARGS ########` fields of `proxy.py` file:<br><br>
 Set `country` - default is US<br>
 Set `limit` - default is 100<br>
 Set `output file` (optional, in case unwanted, remove line and uncomment next line.)<br><br>
