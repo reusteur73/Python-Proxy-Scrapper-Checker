@@ -16,8 +16,9 @@ headers = {
 
 class ProxyChecker:
 
-    def __init__(self):
+    def __init__(self, save_to_file=None):
         self.ip = self.get_my_ip()
+        self.save_to_file = save_to_file
 
     def get_my_ip(self):
         sites = ['http://ipinfo.io/ip', 'https://api.ipify.org/', 'http://ifconfig.io/ip']
@@ -90,7 +91,10 @@ class ProxyChecker:
             except:
                 result['country_code'] = goe_info['countryCode']
 
+            if self.save_to_file:
+                with open(self.save_to_file, 'a') as f:
+                    f.write(result['proxy'] + '\n') 
             return result
 
         else:
-            return resp
+            return None
